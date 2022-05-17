@@ -7,7 +7,7 @@ from infrastructure.database import Base
 class SaleServiceItem(Base):
     __tablename__ = "sale_service_items"
 
-    id = Column(UUID(as_uuid=True), primaryKey=True)
+    id = Column(UUID(as_uuid=True), primary_key=True)
     name = Column(String)
     price = Column(Float)
     ssi_uoms = relationship("SSIUOM", back_populates="ssi", cascade="save-update, delete")

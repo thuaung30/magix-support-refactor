@@ -1,11 +1,14 @@
+from pydantic.types import UUID4
+
+
 class BillPatient:
     def __init__(
             self,
-            id: str,
+            id: UUID4,
             meta_patient_name: str,
             meta_patient_address: str,
             meta_patient_phone: str,
-            patient_id: str | None
+            patient_id: UUID4
         ):
         self.id = id
         self.meta_patient_name = meta_patient_name

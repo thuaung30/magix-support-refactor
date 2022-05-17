@@ -1,10 +1,11 @@
-from src.domain.BillItem import BillItem
-from src.domain.BillPatient import BillPatient
+from pydantic.types import UUID4
+from domain.bill.BillItem import BillItem
+from domain.bill.BillPatient import BillPatient
 
 class Bill:
     def __init__(
             self, 
-            id: str | None, 
+            id: UUID4, 
             total_amount: float = 0, 
             status: str | None = None,
             bill_items: list[BillItem] = [],

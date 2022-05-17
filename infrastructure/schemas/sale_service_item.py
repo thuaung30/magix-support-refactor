@@ -18,7 +18,7 @@ class SSIUOMCategory(BaseModel):
         orm_mode = True
 
 class SaleServiceItem(BaseModel):
-    id: UUID4 | None
+    id: UUID4
     name: str 
     price: float
     ssi_uoms: list[SSIUOM] = []

@@ -7,7 +7,7 @@ from infrastructure.database import Base
 class BillPatient(Base):
     __tablename__ = "bill_patients"
 
-    id = Column(UUID(as_uuid=True), primaryKey=True)
+    id = Column(UUID(as_uuid=True), primary_key=True)
     meta_name = Column(String)
     meta_address = Column(String)
     meta_phone = Column(Integer)

@@ -1,4 +1,5 @@
 from fastapi import Depends
+from pydantic.types import UUID4
 from sqlalchemy.orm import Session
 from infrastructure.database import get_db
 from infrastructure.schemas.sale_service_item import SaleServiceItem as SaleServiceItemDTO
@@ -37,3 +38,9 @@ class SaleServiceItemRepository:
         self._db.add(db_sale_service_item)
         self._db.commit()
         return SaleServiceItemDTO.from_orm(db_sale_service_item)
+
+    def find_by_id(self, id: UUID4) -> SaleServiceItemDTO | None:
+        sale_and_service_item = self._db.get(SaleServiceItem, id) 
+        if(sale_and_service_item != None):
+            return SaleServiceItemDTO.from_orm(sale_and_service_item)
+        return None

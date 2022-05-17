@@ -7,7 +7,7 @@ from infrastructure.database import Base
 class SSIUOM(Base):
     __tablename__ = "sale_service_items_uoms"
 
-    id = Column(UUID(as_uuid=True), primaryKey=True)
+    id = Column(UUID(as_uuid=True), primary_key=True)
     meta_name = Column(String)
     ssi_id = Column(UUID(as_uuid=True), ForeignKey("sale_service_items.id", ondelete="CASCADE"))
     ssi = relationship("SaleServiceItem", back_populates="ssi_uoms")

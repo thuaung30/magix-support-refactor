@@ -6,9 +6,8 @@ class Sex(str, Enum):
     male = "male"
     female = "female"
 
-
 class Patient(BaseModel):
-    id: UUID4 | None = None
+    id: UUID4
     name: str 
     sex: Sex = Sex.male
     age: int

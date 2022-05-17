@@ -1,22 +1,31 @@
-from typing import Optional
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from api.base import router
+from config.config import settings
+import uvicorn
 
-app = FastAPI()
+def include_router(app):
+    app.include_router(router)
+
+def add_middleware(app):
+	app.add_middleware(
+    	CORSMiddleware,
+    	allow_origins=["*"],
+    	allow_credentials=True,
+    	allow_methods=["*"],
+    	allow_headers=["*"],
+	)
+
+def start_application():
+	app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
+	include_router(app)
+	add_middleware(app)
+	# create_tables()    
+	return app
+
+app = start_application()
+
+if __name__=='__main__':
+	uvicorn.run('main:app', host='127.0.0.1', port=8000, reload=True, log_level='info')
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_items(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
-
-
-def get_full_name(first_name, last_name):
-    full_name = first_name.title() + " " + last_name.title()
-    return full_name
-
-
-print(get_full_name("john", "doe"))
