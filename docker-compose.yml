@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  db:
+  refactor_db:
     image: postgres:13-alpine
     container_name: refactor_db
     volumes:
